@@ -119,7 +119,7 @@ pokeApi.getPokemons = (offset = 0, limit = 10) =>
 }
 
 pokeApi.getEvolutionChainById = (url) => {
-    console.log(url)
+    // console.log(url)
 }
 
 function cleanText(text) {
