@@ -1,0 +1,71 @@
+/* styles.css */
+#hexagon-container {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexagon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexagon-background {
+    fill: #e0e0e0;
+    stroke: #cccccc;
+    stroke-width: 1;
+}
+
+.stat-values {
+    fill: rgba(0, 123, 255, 0.4);
+    stroke: #007bff;
+    stroke-width: 1;
+}
+
+text {
+    font-size: 12px;
+    font-weight: bold;
+    fill: #333333;
+}
+
+/* Centraliza o texto nas pontas do hexágono */
+.label {
+    font-size: 10px;
+    font-weight: bold;
+    fill: #333333;
+    dominant-baseline: middle;
+}
+
+.stat-lines {
+    fill: none;
+    stroke: #999999;
+    stroke-width: 1;
+    stroke-dasharray: 2, 2;
+}
+
+.stat-values {
+    fill: rgba(0, 123, 255, 0.4);
+    stroke: #007bff;
+    stroke-width: 1;
+}
+
+text {
+    font-size: 12px;
+    fill: #333333;
+}
+
+.stat-number {
+    font-size: 10px;
+    fill: #000000;
+    font-weight: bold;
+}
+
+.center-line {
+    stroke: #cccccc;
+    stroke-width: 0.5;
+}

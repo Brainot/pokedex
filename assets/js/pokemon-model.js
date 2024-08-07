@@ -8,6 +8,8 @@ class Pokemon {
     sprite;
     height;
     weight;
+    points = [];
+    stats = [];
 }
 
 class Specie {
@@ -19,5 +21,5 @@ class Specie {
     habitat;
     about_text;
     gender_rate = [];
-
+    evolutionUrl;
 }

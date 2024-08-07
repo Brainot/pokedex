@@ -12,6 +12,37 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
     const [type] = types
 
+    const stats = pokeDetail.stats.map((stat) => stat.base_stat)
+
+     // Máximo teórico para normalização
+    const maxStatValue = 255;
+    const radius = 60; // Raio do hexágono
+    const centerX = 100;
+    const centerY = 100;
+
+    // Normalizar e calcular pontos
+    pokemon.points = [
+        [centerX, centerY - (stats[0] / maxStatValue) * radius], // HP
+        [
+            centerX + (stats[1] / maxStatValue) * radius * Math.cos(Math.PI / 6),
+            centerY - (stats[1] / maxStatValue) * radius * Math.sin(Math.PI / 6),
+        ], // Attack
+        [
+            centerX + (stats[2] / maxStatValue) * radius * Math.cos(Math.PI / 6),
+            centerY + (stats[2] / maxStatValue) * radius * Math.sin(Math.PI / 6),
+        ], // Defense
+        [centerX, centerY + (stats[3] / maxStatValue) * radius], // Sp. Atk
+        [
+            centerX - (stats[4] / maxStatValue) * radius * Math.cos(Math.PI / 6),
+            centerY + (stats[4] / maxStatValue) * radius * Math.sin(Math.PI / 6),
+        ], // Sp. Def
+        [
+            centerX - (stats[5] / maxStatValue) * radius * Math.cos(Math.PI / 6),
+            centerY - (stats[5] / maxStatValue) * radius * Math.sin(Math.PI / 6),
+        ], // Speed
+    ];
+
+    pokemon.stats = stats
     pokemon.types = types
     pokemon.background_color = type
 
@@ -42,6 +73,8 @@ function convertPokeApiSpeciesToPokemon(pokespecie) {
     especie.about_text = cleanText(favor_entries[0]);
 
     especie.gender_rate = genderRate(pokespecie.gender_rate)
+
+    especie.evolutionUrl = pokespecie.evolution_chain.url
     
     return especie
 }
@@ -83,6 +116,10 @@ pokeApi.getPokemons = (offset = 0, limit = 10) =>
         .then((detailRequest) => Promise.all(detailRequest))
         .then((pokemonsDetails) => pokemonsDetails)
         .catch((error) => console.log(error))
+}
+
+pokeApi.getEvolutionChainById = (url) => {
+    console.log(url)
 }
 
 function cleanText(text) {
